@@ -2,129 +2,154 @@ songs = [
     {'title': 'Legend Has It',
     'artist': 'Run The Jewels',
     'genre': 'Rap',
-    'rating': 5
+    'year': 2017
     },
 
     {'title': 'Highway Queen',
     'artist': 'Nikki Lane',
     'genre': 'Country',
-    'rating': 4
+    'year': 2017
     },
 
     {'title': 'Seven Wonders',
     'artist': 'Fleetwood Mac',
     'genre': 'Classic Rock',
-    'rating': 3
+    'year': 1987
     },
 
     {'title': 'Green River',
     'artist': 'Creedence Clearwater Revival',
     'genre': 'Classic Rock',
-    'rating': 2
+    'year': 1969
     },
 
-    {'title': 'Darling',
-    'artist': 'Real Estate',
+    {'title': 'Loser',
+    'artist': 'Beck',
     'genre': 'Indie Rock',
-    'rating': 5
+    'year': 1994
     },
 
-    {'title': 'Fire Squad',
-    'artist': 'J. Cole',
+    {'title': 'Straight Outta Compton',
+    'artist': 'NWA',
     'genre': 'Rap',
-    'rating': 3
+    'year': 1988
     },
 
-    {'title': 'Cream on Chrome',
-    'artist': 'Ratatat',
+    {'title': "Lover I Don't Have To Love",
+    'artist': 'Bright Eyes',
     'genre': 'Indie Rock',
-    'rating': 5
+    'year': 2002
     },
 
-    {'title': 'Life Itself',
-    'artist': 'Glass Animals',
+    {'title': 'Oxford Comma',
+    'artist': 'Vampire Weekend',
     'genre': 'Indie Rock',
-    'rating': 4
+    'year': 2008
     },
 
     {'title': 'Blue Sky',
     'artist': 'Allman Brothers Band',
     'genre': 'Classic Rock',
-    'rating': 3
+    'year': 1972
     },
 
-    {'title': 'Angeleno',
-    'artist': 'Sam Outlaw',
+    {'title': 'Turtles All The Way Down',
+    'artist': 'Sturgill Simpson',
     'genre': 'Country',
-    'rating': 4
+    'year': 2014
     },
 
     {'title': 'Tamale',
     'artist': 'Tyler, The Creator',
     'genre': 'Rap',
-    'rating': 2
+    'year': 2013
     },
 
-    {'title': 'Pulling Teeth',
-    'artist': 'Lucius',
-    'genre': 'Indie Rock',
-    'rating': 5
+    {'title': 'Sunday Morning',
+    'artist': 'The Velvet Underground',
+    'genre': 'Classic Rock',
+    'year': 1967
     },
 
     {'title': 'Alright',
     'artist': 'Kendrick Lamar',
     'genre': 'Rap',
-    'rating': 3
+    'year': 2015
     },
 
     {'title': 'Brown Sugar',
     'artist': 'The Rolling Stones',
     'genre': 'Classic Rock',
-    'rating': 3
+    'year': 1971
     },
 
-    {'title': 'Pure Comedy',
-    'artist': 'Father John Misty',
+    {'title': 'Where Is My Mind?',
+    'artist': 'Pixies',
     'genre': 'Indie Rock',
-    'rating': 5
+    'year': 1988
     },
 
-    {'title': 'About To Find Out',
-    'artist': 'Margo Price',
+    {'title': 'Fast As You',
+    'artist': 'Dwight Yoakam',
     'genre': 'Country',
-    'rating': 4
+    'year': 1993
     }
 
     ]
 
-print """
-Welcome to your music library
-============================
-1. View artists
-2. View songs
-3. View playlists
-3. Create playlist
-4. Create smart playlist
-5. Add songs
-6. Delete songs
-5. Quit
-"""
 
-while True:
-    choice = int(raw_input('What do you want to do (1-5)? '))
-    if choice == 1:
+
+
+def print_menu():
+    print 'Welcome to your music library'
+    print '============================'
+    print '1. View artists'
+    print '2. View songs'
+    print '3. View playlists'
+    print '4. Create playlist'
+    print '5. Create smart playlist'
+    print '6. Add songs'
+    print '7. Delete songs'
+    print '8. Save changes'
+    print '9. Quit'
+
+playlists = []
+menu_choice = 0
+print_menu()
+while menu_choice != 5:
+    menu_choice = int(raw_input('What do you want to do (1-5)? '))
+    if menu_choice == 1:
         for song in songs:
             print song['artist']
-    if choice == 2:
+    elif menu_choice == 2:
         for song in songs:
             print song['title']
-    if choice == 3:
+    #elif menu_choice == 3:
+        #print playlist_name
+    elif menu_choice == 4:
         playlist_name = raw_input('Name your playlist: ' )
         song_choice = raw_input('Type the name of the song you wish to add: ')
         for song in songs:
             if song['title'] == song_choice:
                 playlist_name.append
                 print 'song added'
-    if choice == 4:
-        song_count = raw_input('How many songs? ')
-        genre_spec = raw_input('Favorite genre? ')
+    #elif menu_choice == 5:
+        #smart_playlist_name = raw_input('Name your smart playlist: ')
+        #favorite_decade =
+        #favorite_genre =
+    elif menu_choice == 6:
+        song_title = raw_input('Song title?: ')
+        artist_name = raw_input('Artist name?: ')
+        genre = raw_input('genre?: ')
+        year = int(raw_input('year?: '))
+        songs.extend(song_title, artist_name, genre, year)
+        print "song added"
+    elif menu_choice == 7:
+        delete_song = raw_input('What song do you want to delete?')
+        if delete_song == songs["title"]:
+            del song['title']
+    #elif menu_choice == 8:
+    elif menu_choice == 9:
+        print "Bye."
+    elif menu_choice != 5:
+        print_menu()
