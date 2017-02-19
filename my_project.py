@@ -116,7 +116,7 @@ def print_menu():
 playlists = []
 menu_choice = 0
 print_menu()
-while menu_choice != 5:
+while menu_choice != 9:
     menu_choice = int(raw_input('What do you want to do (1-5)? '))
     if menu_choice == 1:
         for song in songs:
@@ -127,16 +127,20 @@ while menu_choice != 5:
     #elif menu_choice == 3:
         #print playlist_name
     elif menu_choice == 4:
-        playlist_name = raw_input('Name your playlist: ' )
-        song_choice = raw_input('Type the name of the song you wish to add: ')
-        for song in songs:
-            if song['title'] == song_choice:
-                playlist_name.append
-                print 'song added'
+        playlist_choice_answer = 0
+        while playlist_choice_answer != "N":
+            playlist_name = raw_input('Name your playlist: ' )
+            song_choice = raw_input('Type the name of the song you wish to add: ')
+            for song in songs:
+                if song['title'] == song_choice:
+                    playlist_name.append
+                    print 'song added'
+            playlist_choice_answer = raw_input('Would you like to add another? (Y or N) ')
     #elif menu_choice == 5:
         #smart_playlist_name = raw_input('Name your smart playlist: ')
-        #favorite_decade =
-        #favorite_genre =
+        #playist_count = raw_input('How many songs in your playlist? ')
+        #favorite_decade = raw_input('Favorite decade? (60s, 70s, 80s, 90s, 00s, 10s) ')
+        #favorite_genre = raw_input('Favorite genre? ')
     elif menu_choice == 6:
         song_title = raw_input('Song title?: ')
         artist_name = raw_input('Artist name?: ')
