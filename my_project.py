@@ -2,7 +2,7 @@ songs = [
     {'title': 'Legend Has It',
     'artist': 'Run The Jewels',
     'genre': 'Rap',
-    'year': 2017
+    'year': 2016
     },
 
     {'title': 'Highway Queen',
@@ -94,71 +94,90 @@ songs = [
     'genre': 'Country',
     'year': 1993
     }
-
-    ]
-
-
+]
 
 
 def print_menu():
-    print 'Welcome to your music library'
-    print '============================'
-    print '1. View artists'
-    print '2. View songs'
-    print '3. View playlists'
-    print '4. Create playlist'
-    print '5. Create smart playlist'
-    print '6. Add songs'
-    print '7. Delete songs'
-    print '8. Save changes'
-    print '9. Quit'
+    print('Welcome to your music library\n'\
+    '============================\n'\
+    '1. View artists\n'\
+    '2. View songs\n'\
+    '3. View playlists\n'\
+    '4. Create playlist\n'\
+    '5. Add songs\n'\
+    '6. Delete songs\n'\
+    '7. Quit')
 
-playlists = []
+def _handle_show_artists():
+    for song in songs:
+        print(song['artist'])
+
+def _handle_show_title():
+    for song in songs:
+        print(song['title'])
+
+def _handle_add_songs():
+    song_title = raw_input('Song title?: ')
+    artist_name = raw_input('Artist name?: ')
+    genre = raw_input('Genre?: ')
+    year = int(raw_input('year?: '))
+    new_song = {'title': song_title,
+                'artist': artist_name,
+                'genre': genre,
+                'year': year}
+    songs.append(new_song)
+    print('song added')
+
+
+playlists = {'my dope ass rap playlist': [{'title': 'Legend Has It',
+                                           'artist': 'Run the Jewels',
+                                           'year': 2017,
+                                           'genre': 'Rap'}]
+            }
 menu_choice = 0
-print_menu()
-while menu_choice != 9:
-    menu_choice = int(raw_input('What do you want to do (1-5)? '))
-    if menu_choice == 1:
-        for song in songs:
-            print song['artist']
-    elif menu_choice == 2:
-        for song in songs:
-            print song['title']
-    elif menu_choice == 3:
-        print playlists
-    elif menu_choice == 4:
-        def playlist_name():
-            raw_input('Name your playlist: ' )
-            song_choice = raw_input('Type the name of the song you wish to add: ')
-            for song in songs:
-                if song['title'] == song_choice:
-                    playlists.append(song_choice)
-                    print 'song added'
-            #add_another = raw_input('Would you like to add another? (Y or N) ')
-            #if add_another == "Y":
-                #playlist_name()
-            #elif add_another == "N":
-                #print_menu()
+while menu_choice != 7:
+    print_menu()
+    menu_choice = int(raw_input('What do you want to do (1-7)? '))
+    if menu_choice == 0:
+        print(songs)
+    elif menu_choice == 1:
+        _handle_show_artists()
 
-    elif menu_choice == 5:
-        smart_playlist_name = raw_input('Name your smart playlist: ')
-        playist_count = raw_input('How many songs in your playlist? ')
-        favorite_decade = raw_input('Choose a decade: 60s, 70s, 80s, 90s, 00s, 10s) ')
-        favorite_genre = raw_input('Choose a genre ')
-    elif menu_choice == 6:
+    elif menu_choice == 2:
+        _handle_show_title()
+
+    elif menu_choice == 3:
+        print(playlists)
+
+    elif menu_choice == 4:
+        playlist_name = raw_input('Playlist name: ')
         song_title = raw_input('Song title?: ')
         artist_name = raw_input('Artist name?: ')
-        genre = raw_input('genre?: ')
+        genre = raw_input('Genre?: ')
         year = int(raw_input('year?: '))
-        new_song = {song_title, artist_name, genre, year}
-        songs.extend(new_song)
-        print "song added"
+        new_playlist = {playlist_name: [{'title': song_title,
+                                         'artist': artist_name,
+                                         'year': year,
+                                         'genre': genre}]
+                    }
+        playlists.update(new_playlist)
+        print('playlist added')
+
+    elif menu_choice == 5:
+        _handle_add_songs()
+    elif menu_choice == 6:
+        delete_song = raw_input('What song do you want to delete? ')
+        for index, song in enumerate(songs):
+            if song['title'] == delete_song:
+                del songs[index]
+                break
     elif menu_choice == 7:
-        delete_song = raw_input('What song do you want to delete?')
-        if delete_song == songs["title"]:
-            del song['title']
-    #elif menu_choice == 8:
-    elif menu_choice == 9:
-        print "Bye."
+        print('Bye.')
     elif menu_choice != 5:
         print_menu()
+
+
+
+
+#playlists should be a DICTIONARY
+
